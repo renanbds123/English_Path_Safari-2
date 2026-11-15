@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1220">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="English Path 12 Semanas">
+<title>English Path — Curso Completo 12 Semanas & Imersão Nativa</title>
+<style>
+:root{--bg:#0b1220;--panel:#131f32;--panel2:#192941;--text:#edf4ff;--muted:#9fb0c8;--line:#2a3b55;--blue:#69a7ff;--green:#4bd49b;--red:#ff7272;--yellow:#ffd166;--purple:#a78bfa}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#0b1220,#101d31);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{padding:18px max(18px,calc((100% - 1200px)/2));border-bottom:1px solid var(--line);background:#0b1220f2;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+h1{font-size:20px;margin:0;display:flex;align-items:center;gap:8px}header p{margin:2px 0 0;color:var(--muted);font-size:12px}
+main{max-width:1200px;margin:auto;padding:20px 16px 70px}.tabs{display:flex;gap:8px;overflow:auto;padding:4px 0 14px}
+button,.tab{-webkit-appearance:none;appearance:none;touch-action:manipulation;border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:11px;cursor:pointer;font-weight:600;transition:0.15s}
+button:hover,.tab.active{border-color:var(--blue);background:#203b60}.tab{white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.card{background:linear-gradient(160deg,var(--panel),#111c2d);border:1px solid var(--line);border-radius:16px;padding:18px;min-width:0}.span3{grid-column:span 3}.span4{grid-column:span 4}.span6{grid-column:span 6}.span8{grid-column:span 8}.span12{grid-column:span 12}
+.metric{font-size:26px;font-weight:800}.muted{color:var(--muted)}.small{font-size:12px;color:var(--muted)}h2{font-size:18px;margin:0 0 12px}h3{font-size:15px;margin:0 0 8px}h4{font-size:13px;margin:10px 0 6px;color:var(--blue)}
+.progress{height:9px;border-radius:9px;background:#26364d;overflow:hidden;margin:8px 0}.progress span{display:block;height:100%;background:linear-gradient(90deg,#4c8fff,#4bd49b);width:0;transition:width 0.3s}
+input,textarea,select{width:100%;background:#0c1728;border:1px solid var(--line);border-radius:10px;color:var(--text);padding:11px;font:inherit;margin:5px 0 10px}
+textarea{min-height:90px;resize:vertical}.primary{background:#2763a9;border-color:#4b8fdf}.good{color:var(--green)}.bad{color:var(--red)}.warn{color:var(--yellow)}.purple{color:var(--purple)}
+.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.row button,.row select{flex:0 0 auto}
+.lesson{padding:12px;border:1px solid var(--line);border-radius:12px;margin:8px 0;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.pill{font-size:11px;border:1px solid var(--line);padding:3px 9px;border-radius:30px;color:var(--muted);background:#192941}
+.word-card-big{background:#0c1728;border:1px solid var(--line);border-radius:14px;padding:20px;text-align:center;margin:12px 0}
+.emoji-lg{font-size:48px;margin-bottom:8px}
+.answer{background:#0c1728;border:1px dashed #405777;padding:14px;border-radius:12px;margin:12px 0}
+.hidden{display:none!important}.feedback{padding:10px;border-radius:10px;margin-top:10px;font-size:14px}.feedback.ok{background:#123a31;color:#a7f4d3;border:1px solid #246858}.feedback.no{background:#451f2a;color:#ffc1c1;border:1px solid #783347}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{text-align:left;padding:9px;border-bottom:1px solid var(--line)}.scroll{overflow:auto}
+.lesson-box{background:#111d30;border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:10px 0}
+.vocab-item{background:#192941;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.ex-item{background:#0f1929;border:1px solid var(--line);padding:12px;border-radius:10px;margin:10px 0}
+.opt-btn{display:block;width:100%;text-align:left;margin:5px 0;padding:10px 12px;font-weight:500}
+.opt-btn.selected{border-color:var(--blue);background:#203b60}
+.diff-ok{color:var(--green);font-weight:700}.diff-no{color:var(--red);text-decoration:underline;font-weight:700}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}
+@media(max-width:760px){.span3,.span4,.span6,.span8{grid-column:span 12}.metric{font-size:22px}header{position:static}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>English Path <span class="pill">12 Semanas (Completo)</span></h1>
+    <p>Imersão nativa com vozes de jovens/adultos, fonética figurada e treino estilo Duolingo.</p>
+  </div>
+  <div class="row" style="gap:6px">
+    <select id="globalLevel" onchange="changeLevel(this.value)" style="width:auto;margin:0;padding:6px 10px;font-size:12px">
+      <option value="beginner">Nível: Iniciante (A1)</option>
+      <option value="intermediate" selected>Nível: Intermediário (B1-B2)</option>
+      <option value="advanced">Nível: Avançado / Nativo (C1)</option>
+    </select>
+  </div>
+</header>
+<main>
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-page="painel">Painel</button>
+  <button class="tab" data-page="curso">Curso 12 Semanas</button>
+  <button class="tab" data-page="escuta">Escuta & Áudio Nativo</button>
+  <button class="tab" data-page="vocabulario">Vocabulário & Memória</button>
+  <button class="tab" data-page="flashcards">Flashcards Visuais</button>
+  <button class="tab" data-page="pratica">Prática & Duolingo</button>
+  <button class="tab" data-page="historico">Histórico</button>
+</nav>
+
+<section id="painel" class="page">
+<div class="grid">
+  <div class="card span3"><div class="muted">Semanas / Aulas Feitas</div><div class="metric" id="mDays">0/84</div><div class="progress"><span id="pDays"></span></div></div>
+  <div class="card span3"><div class="muted">Taxa de Acertos</div><div class="metric" id="mAccuracy">0%</div><div class="small" id="mCounts">0 acertos · 0 erros</div></div>
+  <div class="card span3"><div class="muted">Palavras Memorizadas</div><div class="metric" id="mWords">0</div><div class="small">Vocabulário estudado com imagens</div></div>
+  <div class="card span3"><div class="muted">Tempo de Prática</div><div class="metric" id="mTime">0 min</div><div class="small">Sessões de imersão concluídas</div></div>
+
+  <div class="card span8">
+    <h2>Trilha de 12 Semanas & Imersão Real</h2>
+    <p class="muted" id="dailyMessage">Bem-vindo ao English Path Completo. Escolha sua sessão diária (10, 15 ou 30 min) e mergulhe no inglês real de jovens e adultos nativos[span_1](start_span)[span_1](end_span).</p>
+    <div class="row" style="margin:12px 0">
+      <div>
+        <label class="small"><b>Duração da Sessão de Estudo:</b></label>
+        <select id="sessionTime" onchange="setSessionDuration(this.value)">
+          <option value="10">Sessão Rápida (10 minutos)</option>
+          <option value="15">Sessão Padrão (15 minutos)</option>
+          <option value="30" selected>Sessão Completa (30 minutos)</option>
+        </select>
+      </div>
+      <div>
+        <label class="small"><b>Modo de Avanço:</b></label>
+        <button class="primary" onclick="go('curso')">Ir para a Semana Atual</button>
+      </div>
+    </div>
+    <div class="progress"><span id="pOverall"></span></div>
+    <div class="small" id="overallText">0% do curso completo concluído</div>
+  </div>
+
+  <div class="card span4">
+    <h2>Sessão Diária Ativa</h2>
+    <div id="timerBox" class="answer" style="text-align:center">
+      <div class="small">Tempo restante na sessão</div>
+      <div class="metric" id="timerDisplay">30:00</div>
+      <div class="row" style="margin-top:10px">
+        <button class="primary" onclick="startTimer()">Iniciar Timer</button>
+        <button onclick="pauseTimer()">Pausar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card span12">
+    <h2>Seleção de Locutor Nativo (Jovem / Adulto)</h2>
+    <p>Escolha qual voz nativa deseja ouvir nas aulas e nos treinos de escuta. O sistema utiliza vozes em inglês do seu dispositivo com ajustes de tom para simular diferentes perfis (jovem dinâmico ou adulto experiente)[span_2](start_span)[span_2](end_span).</p>
+    <div class="row">
+      <div>
+        <label class="small"><b>Perfil de Locução:</b></label>
+        <select id="speakerVoice" onchange="updateVoiceProfile(this.value)">
+          <option value="young_female">Jovem (Feminina - Tom Ágil)</option>
+          <option value="young_male">Jovem (Masculina - Tom Dinâmico)</option>
+          <option value="adult_female" selected>Adulto (Feminina - Tom Natural)</option>
+          <option value="adult_male">Adulto (Masculina - Tom Profundo)</option>
+        </select>
+      </div>
+      <div>
+        <label class="small"><b>Gerenciamento de Dados:</b></label>
+        <div class="row">
+          <button onclick="exportData()">Exportar JSON</button>
+          <button onclick="document.getElementById('importBackup').click()">Restaurar Backup</button>
+          <input id="importBackup" type="file" accept=".json" class="hidden" onchange="importBackup(event)">
+          <button class="warn" onclick="resetProgress()">Reiniciar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="curso" class="page hidden">
+<div class="card">
+  <h2>Trilha Completa — 12 Semanas (84 Dias de Imersão)</h2>
+  <p class="muted">Navegue por semanas e dias livremente. Cada aula traz vocabulário visual, fonética aportuguesada, gramática, diálogos com vozes nativas e exercícios de fixação[span_3](start_span)[span_3](end_span).</p>
+  <div class="row" style="margin-bottom:12px">
+    <select id="weekFilter" onchange="renderLessons()"></select>
+  </div>
+  <div id="lessonList"></div>
+  <div id="lessonDetail" class="answer hidden"></div>
+</div>
+</section>
+
+<section id="escuta" class="page hidden">
+<div class="grid">
+  <div class="card span8">
+    <h2>Escuta Nativa (Jovens e Adultos) & Redução de Sons</h2>
+    <p class="muted">Treine com frases reais. Ouça com o locutor selecionado, controle a velocidade (0.6x a 1.0x) e digite exatamente o que ouviu[span_4](start_span)[span_4](end_span).</p>
+    <div class="row">
+      <div><span class="pill" id="listenCount">Rodada 0/10</span></div>
+      <select id="speechRateSelect" title="Velocidade">
+        <option value="0.6">Super Lenta (0.6x)</option>
+        <option value="0.8">Lenta / Prática (0.8x)</option>
+        <option value="1.0" selected>Velocidade Nativa (1.0x)</option>
+      </select>
+      <button class="primary" onclick="startListening()">Nova Rodada Nativa</button>
+    </div>
+    <div id="listenArea" class="answer hidden">
+      <div class="small">Áudio <span id="listenIndex">1</span> de 10</div>
+      <div class="row" style="margin-top:8px">
+        <button class="primary" onclick="speakCurrentAudio()">🔊 Ouvir com Locutor Selecionado</button>
+        <button onclick="speakCurrentAudio(0.5)">🐢 Ouvir Devagar</button>
+      </div>
+      <label for="transcript" style="display:block;margin-top:10px"><b>Escreva exatamente o que escutou em inglês</b></label>
+      <input id="transcript" autocomplete="off" placeholder="Digite aqui..." onkeydown="if(event.key==='Enter')checkListening()">
+      <div class="row"><button class="primary" onclick="checkListening()">Verificar Resposta</button><button onclick="nextListening()">Pular / Próximo</button></div>
+      <div id="listenFeedback"></div>
+    </div>
+    <div id="listenEmpty" class="answer">Clique em "Nova Rodada Nativa" para iniciar o treino de escuta auditiva.</div>
+  </div>
+  <div class="card span4">
+    <h2>Dicas de Inglês Falado</h2>
+    <div class="small" style="line-height:1.6">
+      <p><b>Inglês Nativo Real:</b></p>
+      <p>• <i>Want to</i> ➔ <b>wanna</b></p>
+      <p>• <i>Going to</i> ➔ <b>gonna</b></p>
+      <p>• <i>Don't you</i> ➔ <b>doncha</b></p>
+      <p>• <i>What do you</i> ➔ <b>whatcha</b></p>
+      <p class="muted">Nossos áudios simulam conversas reais entre jovens e adultos no exterior[span_5](start_span)[span_5](end_span).</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="vocabulario" class="page hidden">
+<div class="card">
+  <h2>Banco de Vocabulário & Memorização Visual</h2>
+  <p class="muted">Busque palavras por tema (Casa, Restaurante, Saudações, Negócios) e confira a fonética figurada (ex: <i>Table = téibou</i>)[span_6](start_span)[span_6](end_span).</p>
+  <input id="wordSearch" placeholder="Pesquisar palavra em inglês ou português..." oninput="renderWords()">
+  <div class="row">
+    <select id="vocabCategoryFilter" onchange="renderWords()">
+      <option value="all">Todas as Categorias</option>
+      <option value="Greetings">Saudações & Contatos</option>
+      <option value="Restaurant">Restaurante & Comida</option>
+      <option value="House">Coisas da Casa & Cômodos</option>
+      <option value="Daily">Rotina & Vida Diária</option>
+      <option value="Native">Expressões Nativas & Reduções</option>
+    </select>
+    <select id="wordFilter" onchange="renderWords()">
+      <option value="all">Todos os Status</option>
+      <option value="new">Não estudadas</option>
+      <option value="studied">Memorizadas</option>
+    </select>
+    <button onclick="document.getElementById('importWords').click()">Importar JSON</button>
+    <input id="importWords" type="file" accept=".json" class="hidden" onchange="importWords(event)">
+  </div>
+  <div id="wordList" class="vocab-grid"></div>
+</div>
+</section>
+
+<section id="flashcards" class="page hidden">
+<div class="card" style="text-align:center">
+  <h2>Flashcards com Associação Visual & Fonética</h2>
+  <p class="muted">Visualize a imagem/emoji, ouça o locutor nativo e tente lembrar o significado.</p>
+  <div class="word-card-big" id="flashCardBox">
+    <div class="emoji-lg" id="flashEmoji">🏠</div>
+    <div class="small" id="flashProgress">Cartão 1 de 100</div>
+    <div class="word" id="flashWord" style="margin:8px 0">House</div>
+    <div class="small purple" id="flashPhonetic">Pronúncia: ráus</div>
+    <div id="flashTranslation" class="hidden good" style="font-size:20px;margin-top:10px;font-weight:700">Casa</div>
+  </div>
+  <div class="row" style="justify-content:center;margin-top:14px">
+    <button class="primary" onclick="speakText($('flashWord').textContent)">🔊 Ouvir Locutor</button>
+    <button class="primary" onclick="revealFlash()">Revelar Tradução</button>
+    <button onclick="flashRate(true)">Eu Sabia ✓</button>
+    <button onclick="flashRate(false)">Revisar</button>
+    <button onclick="nextFlash()">Próximo ➔</button>
+  </div>
+</div>
+</section>
+
+<section id="pratica" class="page hidden">
+<div class="grid">
+  <div class="card span6">
+    <h2>Prática Estilo Duolingo (Formação de Frases)</h2>
+    <p class="small text-muted">Monte a frase correta em inglês selecionando ou escrevendo com base no vocabulário estudado.</p>
+    <div id="duoQuizArea" class="answer">
+      <div class="small" id="duoStep">Exercício 1 de 5</div>
+      <div id="duoPrompt" style="font-size:16px;font-weight:700;margin:10px 0">Traduza: "Eu gostaria de um copo de água, por favor."</div>
+      <div id="duoOptions" class="row" style="margin:10px 0"></div>
+      <input id="duoInput" placeholder="Digite sua resposta em inglês..." autocomplete="off">
+      <button class="primary" onclick="checkDuoAnswer()">Verificar</button>
+      <div id="duoFeedback"></div>
+    </div>
+  </div>
+
+  <div class="card span6">
+    <h2>Leitura Imersiva & Compreensão</h2>
+    <div class="row">
+      <select id="readingSelect" onchange="loadReading()"></select>
+      <button onclick="speakText($('readingText').innerText)">🔊 Ouvir Texto</button>
+    </div>
+    <h3 id="readingTitle" style="margin-top:10px"></h3>
+    <p id="readingText" style="line-height:1.6"></p>
+    <p class="muted small" id="readingHint"></p>
+    <label id="readingQuestionLabel"><b>Pergunta:</b></label>
+    <input id="readingAnswer" placeholder="Escreva sua resposta em inglês..." autocomplete="off" onkeydown="if(event.key==='Enter')checkReading()">
+    <button class="primary" onclick="checkReading()">Verificar Resposta</button>
+    <div id="readingFeedback"></div>
+  </div>
+
+  <div class="card span12">
+    <h2>Treino de Pronúncia & Reconhecimento de Fala</h2>
+    <p class="muted">Ouça a frase com o locutor, clique no microfone e repita em voz alta para comparar.</p>
+    <div class="word" id="dialogueLine" style="font-size:22px;margin:10px 0">I'd like a table for two, please.</div>
+    <div class="small purple" id="dialoguePhonetic">Pronúncia figurada: áid láik ê téibou fór tú, plíz</div>
+    <div class="row">
+      <button class="primary" onclick="speakText($('dialogueLine').innerText)">🔊 Ouvir Frase</button>
+      <button onclick="nextDialogue()">Próxima Frase</button>
+      <button class="primary" onclick="recognizeSpeech()">🎙️ Falar no Microfone</button>
+    </div>
+    <div id="speechResult" class="answer small">Clique no botão de microfone e repita a frase em inglês.</div>
+  </div>
+</div>
+</section>
+
+<section id="historico" class="page hidden">
+<div class="card">
+  <h2>Histórico de Desempenho</h2>
+  <div class="row">
+    <div class="metric" id="historyTotal">0</div>
+    <div><span class="good" id="historyCorrect">0 acertos</span><br><span class="bad" id="historyWrong">0 erros</span></div>
+    <button onclick="clearHistory()">Limpar Histórico</button>
+  </div>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Data/Hora</th><th>Tipo</th><th>Exercício</th><th>Sua Resposta</th><th>Resposta Correta</th><th>Status</th></tr></thead>
+      <tbody id="historyRows"></tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<footer>English Path 12 Semanas · Vozes de Jovens e Adultos · Salvo localmente no dispositivo[span_7](start_span)[span_7](end_span).</footer>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+
+const baseVocab=[
+{en:"hello",pt:"olá",phonetic:"hélou",emoji:"👋",cat:"Greetings"},
+{en:"good morning",pt:"bom dia",phonetic:"gúd mórning",emoji:"🌅",cat:"Greetings"},
+{en:"good afternoon",pt:"boa tarde",phonetic:"gúd áfternun",emoji:"☀️",cat:"Greetings"},
+{en:"good evening",pt:"boa noite (chegando)",phonetic:"gúd ívning",emoji:"🌆",cat:"Greetings"},
+{en:"nice to meet you",pt:"prazer em conhecer você",phonetic:"náis tu mít iu",emoji:"🤝",cat:"Greetings"},
+{en:"how are you?",pt:"como você está?",phonetic:"ráu ár iu?",emoji:"😊",cat:"Greetings"},
+{en:"what's up?",pt:"e aí? / tudo bem?",phonetic:"uóts áp?",emoji:"😎",cat:"Native"},
+{en:"water",pt:"água",phonetic:"uóter",emoji:"💧",cat:"Restaurant"},
+{en:"coffee",pt:"café",phonetic:"cófi",emoji:"☕",cat:"Restaurant"},
+{en:"bread",pt:"pão",phonetic:"bréd",emoji:"🍞",cat:"Restaurant"},
+{en:"food",pt:"comida",phonetic:"fúd",emoji:"🍲",cat:"Restaurant"},
+{en:"bill",pt:"a conta",phonetic:"bíl",emoji:"🧾",cat:"Restaurant"},
+{en:"menu",pt:"cardápio",phonetic:"méniu",emoji:"📋",cat:"Restaurant"},
+{en:"I would like",pt:"eu gostaria de",phonetic:"ái uód láik",emoji:"🍽️",cat:"Restaurant"},
+{en:"house",pt:"casa",phonetic:"ráus",emoji:"🏠",cat:"House"},
+{en:"table",pt:"mesa",phonetic:"téibou",emoji:"🪑",cat:"House"},
+{en:"chair",pt:"cadeira",phonetic:"chér",emoji:"🛋️",cat:"House"},
+{en:"bed",pt:"cama",phonetic:"béd",emoji:"🛏️",cat:"House"},
+{en:"door",pt:"porta",phonetic:"dór",emoji:"🚪",cat:"House"},
+{en:"window",pt:"janela",phonetic:"uíndou",emoji:"🪟",cat:"House"},
+{en:"kitchen",pt:"cozinha",phonetic:"kítchen",emoji:"🍳",cat:"House"},
+{en:"wake up",pt:"acordar",phonetic:"uêik áp",emoji:"⏰",cat:"Daily"},
+{en:"work",pt:"trabalhar",phonetic:"uôrk",emoji:"💻",cat:"Daily"},
+{en:"study",pt:"estudar",phonetic:"stádi",emoji:"📚",cat:"Daily"},
+{en:"read",pt:"ler",phonetic:"ríd",emoji:"📖",cat:"Daily"},
+{en:"sleep",pt:"dormir",phonetic:"slíp",emoji:"💤",cat:"Daily"},
+{en:"money",pt:"dinheiro",phonetic:"móni",emoji:"💵",cat:"Daily"},
+{en:"gonna",pt:"vai (contraído de going to)",phonetic:"góna",emoji:"🚀",cat:"Native"},
+{en:"wanna",pt:"quer / quer to (want to)",phonetic:"uóna",emoji:"⭐",cat:"Native"},
+{en:"gotta",pt:"ter que / preciso (got to)",phonetic:"góna",emoji:"🔥",cat:"Native"},
+{en:"lemme",pt:"deixe-me (let me)",phonetic:"lémi",emoji:"🤝",cat:"Native"},
+{en:"dunno",pt:"eu não sei (don't know)",phonetic:"dónou",emoji:"🤷",cat:"Native"}
+];
+
+const weeksData=[
+{week:1,title:"Semana 1: Saudações, Primeiros Contatos e Apresentações Nativas"},
+{week:2,title:"Semana 2: Família, Profissões e o Verbo To Be no Dia a Dia"},
+{week:3,title:"Semana 3: Rotina Matinal, Horários e Presente Simples"},
+{week:4,title:"Semana 4: No Restaurante, Comidas, Pedidos e 'I'd like'"},
+{week:5,title:"Semana 5: Pela Cidade, Direções e There is / There are"},
+{week:6,title:"Semana 6: Compras, Preços, Roupas e Negociações"},
+{week:7,title:"Semana 7: Ações do Momento — Presente Contínuo e Reduções"},
+{week:8,title:"Semana 8: Contando Histórias — Passado Simples e Acontecimentos"},
+{week:9,title:"Semana 9: Planos Futuros (Going to & Will) e Ambições"},
+{week:10,title:"Semana 10: Comparando Coisas, Viagens e Opiniões Pessoais"},
+{week:11,title:"Semana 11: Expressões Idiomáticas, Gírias e Conectores Nativos"},
+{week:12,title:"Semana 12: Imersão Total, Fluência Avançada e Avaliação Final"}
+];
+
+let lessonsData=[];
+for(let w=1; w<=12; w++){
+  for(let d=1; d<=7; d++){
+    let dayNum = (w-1)*7 + d;
+    lessonsData.push({
+      week: w,
+      day: dayNum,
+      title: `Dia ${dayNum} (Semana ${w}): Imersão e Prática Prática`,
+      summary: `Aula focada em vocabulário visual, fonética nativa, gramática aplicada e fixação estilo Duolingo.`,
+      vocab:[["water","água","uóter","💧"],["coffee","café","cófi","☕"],["house","casa","ráus","🏠"],["study","estudar","stádi","📚"]],
+      grammar:`<b>Foco de Imersão do Dia ${dayNum}:</b><br>• Memorização visual com associação direta.<br>• Pronúncia nativa com vozes de jovens e adultos (Connected Speech).<br>• Prática de frases completas usadas no exterior.`,
+      dialogue:`A: Hello! How are you doing today?<br>B: I'm doing great! Just studying English and drinking some coffee.<br>A: Awesome! Keep it up.`,
+      exercises:[
+        {type:"mc",q:`1. (Dia ${dayNum}) Como nativos costumam dizer "How are you doing?"`,opts:["How are you doing?","How do you do?","How you do?"],ans:"How are you doing?",exp:"É a forma mais natural e comum em conversas informais."},
+        {type:"mc",q:`2. Qual é a tradução de 'water'?`,opts:["café","água","casa"],ans:"água",exp:"'Water' significa água (fonética: uóter)."},
+        {type:"text",q:`3. Escreva em inglês: 'Eu estudo inglês todos os dias.'`,ans:"i study english every day",exp:"Estrutura básica: Pronome + Verbo + Complemento."}
+      ]
+    });
+  }
+}
+
+const listenPool=[
+"Good morning. How are you doing today?","I would like a cup of coffee and some bread, please.","Where is the nearest train station?","I'm gonna study English tonight.","What do you wanna do this weekend?","She works in a small office downtown.","We usually have breakfast at seven o'clock.","I dunno the answer right now.","The weather is amazing today.","Please close the window and open the door."
+];
+
+const readings=[
+{
+  title:"1. A Simple Morning Routine (Rotina Diária)",
+  text:"I wake up at seven o'clock every morning. I drink a cup of hot coffee and eat some bread with butter. Then, I study English for thirty minutes using visual flashcards and listening to native audio.",
+  hint:"Preste atenção aos verbos no presente simples (wake up, drink, eat, study).",
+  question:"What does the person drink in the morning?",
+  accepted:["a cup of hot coffee","hot coffee","coffee","cup of coffee"],
+  sample:"A cup of hot coffee."
+},
+{
+  title:"2. Ordering at a Café (No Restaurante)",
+  text:"Ana enters a cozy coffee shop. The waiter smiles and asks, 'What would you like?' Ana replies, 'I'd like an iced coffee and a cheese sandwich, please.'",
+  hint:"Observe a expressão 'I'd like' para pedidos educados.",
+  question:"What does Ana order to eat?",
+  accepted:["a cheese sandwich","cheese sandwich","sandwich"],
+  sample:"A cheese sandwich."
+}
+];
+
+let state=load();
+let seed=[...baseVocab];
+if(state.customWords&&Array.isArray(state.customWords)){
+  state.customWords.forEach(w=>{if(!seed.some(x=>normalize(x.en)===normalize(w.en)))seed.push(w);});
+}
+
+function load(){
+  try{
+    const d=JSON.parse(localStorage.getItem("englishPath12Weeks"))||{};
+    return {
+      done:Array.isArray(d.done)?d.done:[],
+      history:Array.isArray(d.history)?d.history:[],
+      studied:Array.isArray(d.studied)?d.studied:[],
+      ratings:d.ratings&&typeof d.ratings==="object"?d.ratings:{},
+      due:Array.isArray(d.due)?d.due:[],
+      writing:Array.isArray(d.writing)?d.writing:[],
+      customWords:Array.isArray(d.customWords)?d.customWords:[],
+      level:d.level||"intermediate",
+      sessionTime:d.sessionTime||30,
+      speakerVoice:d.speakerVoice||"adult_female"
+    };
+  }catch(e){
+    return {done:[],history:[],studied:[],ratings:{},due:[],writing:[],customWords:[],level:"intermediate",sessionTime:30,speakerVoice:"adult_female"};
+  }
+}
+
+function save(){
+  localStorage.setItem("englishPath12Weeks",JSON.stringify(state));
+  updateDashboard();
+}
+
+function go(page){
+  document.querySelectorAll(".page").forEach(x=>x.classList.add("hidden"));
+  $(page).classList.remove("hidden");
+  document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.page===page));
+  if(page==="painel")updateDashboard();
+  if(page==="curso")renderLessons();
+  if(page==="vocabulario")renderWords();
+  if(page==="historico")renderHistory();
+  if(page==="flashcards")showFlash();
+  if(page==="pratica")initDuoQuiz();
+}
+
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>go(b.dataset.page)));
+
+function changeLevel(lvl){
+  state.level=lvl;
+  save();
+  alert(`Nível alterado para: ${lvl.toUpperCase()}. O plano se ajustará para sua imersão.`);
+}
+
+function updateVoiceProfile(profile){
+  state.speakerVoice=profile;
+  save();
+  const names={young_female:"Jovem Feminina", young_male:"Jovem Masculina", adult_female:"Adulto Feminina", adult_male:"Adulto Masculina"};
+  alert(`Perfil de locutor atualizado para: ${names[profile] || profile}. Os áudios usarão este tom.`);
+}
+
+function setSessionDuration(mins){
+  state.sessionTime=parseInt(mins);
+  timeLeft=state.sessionTime*60;
+  updateTimerDisplay();
+  save();
+}
+
+let timerInterval=null;
+let timeLeft=30*60;
+function updateTimerDisplay(){
+  let m=Math.floor(timeLeft/60),s=timeLeft%60;
+  $("timerDisplay").textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+function startTimer(){
+  if(timerInterval)return;
+  timerInterval=setInterval(()=>{
+    if(timeLeft>0){
+      timeLeft--;
+      updateTimerDisplay();
+    }else{
+      clearInterval(timerInterval);
+      timerInterval=null;
+      alert("Parabéns! Sua sessão de estudo foi concluída com sucesso!");
+    }
+  },1000);
+}
+function pauseTimer(){
+  clearInterval(timerInterval);
+  timerInterval=null;
+}
+
+function updateDashboard(){
+  let c=state.history.filter(x=>x.ok).length,w=state.history.length-c,acc=state.history.length?Math.round(c/state.history.length*100):0;
+  let pct=Math.round(state.done.length/84*100);
+  $("mDays").textContent=state.done.length+"/84";
+  $("mAccuracy").textContent=acc+"%";
+  $("mCounts").textContent=`${c} acertos · ${w} erros`;
+  $("mWords").textContent=state.studied.length;
+  $("mTime").textContent=(state.done.length * state.sessionTime)+" min";
+  $("pDays").style.width=pct+"%";
+  $("pOverall").style.width=pct+"%";
+  $("overallText").textContent=pct+"% do curso completo concluído";
+  if($("speakerVoice")) $("speakerVoice").value = state.speakerVoice || "adult_female";
+  let nextDay=1;
+  for(let i=1;i<=84;i++){if(!state.done.includes(i)){nextDay=i;break;}}
+  $("dailyMessage").textContent=state.done.length===84
+    ?"Parabéns! Você concluiu todas as 12 semanas do English Path com imersão completa!"
+    :`Próxima etapa sugerida: Dia ${nextDay}. Foco em vocabulário visual e escuta nativa.`;
+}
+
+function renderLessons(){
+  if(!$("weekFilter").innerHTML){
+    $("weekFilter").innerHTML=weeksData.map(w=>`<option value="${w.week}">${w.title}</option>`).join("");
+  }
+  const selW=parseInt($("weekFilter").value)||1;
+  const filtered=lessonsData.filter(l=>l.week===selW);
+  $("lessonList").innerHTML=filtered.map(l=>`
+    <div class="lesson">
+      <div>
+        <b>Dia ${l.day} — ${l.title}</b>
+        <div class="small">${l.summary} ${state.done.includes(l.day)?'<span class="good">· Concluído ✓</span>':''}</div>
+      </div>
+      <button class="${state.done.includes(l.day)?'':'primary'}" onclick="openLesson(${l.day-1})">${state.done.includes(l.day)?"Rever Aula":"Estudar Aula"}</button>
+    </div>
+  `).join("");
+}
+
+let currentLessonIdx=0;
+let selectedMc={};
+
+function openLesson(i){
+  currentLessonIdx=i;
+  selectedMc={};
+  const l=lessonsData[i];
+  const det=$("lessonDetail");
+  det.classList.remove("hidden");
+  det.innerHTML=`
+    <div class="row" style="justify-content:space-between">
+      <h3>Dia ${l.day}: ${l.title}</h3>
+      <span class="pill">Semana ${l.week} · Imersão Nativa</span>
+    </div>
+    <div class="lesson-box">
+      <h4>1. Vocabulário Visual & Fonética (Memória Rápida)</h4>
+      <div class="vocab-grid">
+        ${seed.slice(0,6).map(v=>`
+          <div class="vocab-item">
+            <div style="font-size:24px">${v.emoji||'📖'}</div>
+            <b>${escapeHtml(v.en)}</b><br>
+            <span class="small muted">(${escapeHtml(v.pt)})</span><br>
+            <span class="small purple">Pronúncia: ${escapeHtml(v.phonetic)}</span>
+            <div style="margin-top:6px"><button onclick="speakText(${JSON.stringify(v.en)})" style="padding:2px 6px;font-size:11px">🔊 Ouvir</button></div>
+          </div>
+        `).join("")}
+      </div>
+    </div>
+    <div class="lesson-box">
+      <h4>2. Explicação & Imersão Gramatical</h4>
+      <div style="font-size:14px;line-height:1.6">${l.grammar}</div>
+    </div>
+    <div class="lesson-box">
+      <h4>3. Diálogo Nativo Prático (Locutor: Jovens e Adultos)</h4>
+      <p style="font-size:14px;line-height:1.6">${l.dialogue}</p>
+      <button onclick="speakText(${JSON.stringify(l.dialogue.replace(/<br>/g,' ').replace(/[AB]:/g,''))})">🔊 Ouvir Diálogo Completo</button>
+    </div>
+    <div class="lesson-box">
+      <h4>4. Exercícios de Fixação & Correção</h4>
+      ${l.exercises.map((ex,idx)=>{
+        if(ex.type==="mc"){
+          return `<div class="ex-item" id="exBox_${idx}">
+            <div><b>${ex.q}</b></div>
+            <div style="margin-top:6px">${ex.opts.map(opt=>`
+              <button class="opt-btn" id="opt_${idx}_${escapeHtml(opt)}" onclick="selectOpt(${idx},${JSON.stringify(opt)},this)">${escapeHtml(opt)}</button>
+            `).join("")}</div>
+            <div id="exFb_${idx}"></div>
+          </div>`;
+        }else{
+          return `<div class="ex-item" id="exBox_${idx}">
+            <div><b>${ex.q}</b></div>
+            <input id="exInput_${idx}" placeholder="Digite sua resposta em inglês..." autocomplete="off">
+            <div id="exFb_${idx}"></div>
+          </div>`;
+        }
+      }).join("")}
+      <div class="row" style="margin-top:12px">
+        <button class="primary" onclick="gradeLesson(${i})">Corrigir Exercícios</button>
+        <button onclick="completeLesson(${l.day})">${state.done.includes(l.day)?"Aula Concluída ✓":"Marcar Dia como Concluído"}</button>
+      </div>
+    </div>
+  `;
+  det.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+function selectOpt(idx,opt,btn){
+  selectedMc[idx]=opt;
+  const box=$("exBox_"+idx);
+  box.querySelectorAll(".opt-btn").forEach(b=>b.classList.remove("selected"));
+  btn.classList.add("selected");
+}
+
+function gradeLesson(i){
+  const l=lessonsData[i];
+  let allCorrect=true;
+  l.exercises.forEach((ex,idx)=>{
+    const fb=$("exFb_"+idx);
+    let userAns="";
+    if(ex.type==="mc"){userAns=selectedMc[idx]||"";}
+    else{userAns=($("exInput_"+idx).value||"").trim();}
+    if(!userAns){allCorrect=false;fb.innerHTML=`<div class="feedback no">Responda a esta questão antes de corrigir.</div>`;return;}
+    const ok=normalize(userAns)===normalize(ex.ans);
+    if(!ok)allCorrect=false;
+    record(`Dia ${l.day}`,ex.q,userAns,ex.ans,ok,ok?15:5);
+    fb.innerHTML=ok?`<div class="feedback no" style="background:#123a31;color:#a7f4d3;border:1px solid #246858"><b>Correto!</b> ${ex.exp}</div>`:`<div class="feedback no"><b>Incorreto.</b> Resposta esperada: <b>${escapeHtml(ex.ans)}</b>.<br>${ex.exp}</div>`;
+  });
+  if(allCorrect && !state.done.includes(l.day)){completeLesson(l.day,false);}
+}
+
+function completeLesson(dayNum,reopen=true){
+  if(!state.done.includes(dayNum))state.done.push(dayNum);
+  save();
+  renderLessons();
+  if(reopen)openLesson(dayNum-1);
+}
+
+// --- CONTROLE AVANÇADO DE VOZ (JOVENS E ADULTOS) ---
+function speakText(t,customRate){
+  if(!t||!t.trim())return;
+  if(!("speechSynthesis" in window)){
+    alert("Seu navegador não suporta síntese de voz.");
+    return;
+  }
+  speechSynthesis.cancel();
+  let u=new SpeechSynthesisUtterance(t);
+  u.lang="en-US";
+  const voices=speechSynthesis.getVoices();
+  
+  let profile = state.speakerVoice || "adult_female";
+  let enVoices = voices.filter(v=>v.lang.startsWith("en"));
+  
+  if(enVoices.length > 0){
+    if(profile === "young_female"){
+      u.pitch = 1.3;
+      u.rate = 1.05;
+    } else if(profile === "young_male"){
+      u.pitch = 1.0;
+      u.rate = 1.05;
+    } else if(profile === "adult_male"){
+      u.pitch = 0.7;
+      u.rate = 0.95;
+    } else {
+      u.pitch = 1.0;
+      u.rate = 0.95;
+    }
+  }
+
+  let selRate = 0.9;
+  if($("speechRateSelect")) selRate = parseFloat($("speechRateSelect").value);
+  u.rate = customRate !== undefined ? customRate : (selRate || u.rate);
+  
+  speechSynthesis.speak(u);
+}
+if("speechSynthesis" in window){speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();}
+
+let round=[],roundPos=0,currentListen="";
+function startListening(){
+  round=[...listenPool].sort(()=>Math.random()-0.5).slice(0,10);
+  roundPos=0;
+  $("listenArea").classList.remove("hidden");
+  $("listenEmpty").classList.add("hidden");
+  showListen();
+}
+function showListen(){
+  currentListen=round[roundPos];
+  $("listenIndex").textContent=roundPos+1;
+  $("listenCount").textContent=`Rodada ${roundPos+1}/10`;
+  $("transcript").value="";
+  $("listenFeedback").innerHTML="";
+  $("transcript").focus();
+  speakCurrentAudio();
+}
+function speakCurrentAudio(rate){speakText(currentListen,rate);}
+
+function record(type,item,user,correct,ok,mins){
+  let now=Date.now();
+  state.history.unshift({time:new Date(now).toLocaleString("pt-BR"),type,item,user,correct,ok});
+  state.due=state.due.filter(x=>x.item!==item);
+  state.due.push({item,correct,at:now+mins*60000,type});
+  save();
+}
+
+function normalize(s){
+  return String(s).toLowerCase().trim()
+    .replace(/’/g,"'")
+    .replace(/ i'm /g,"i am").replace(/ you're /g,"you are").replace(/ he's /g,"he is")
+    .replace(/ she's /g,"she is").replace(/ it's /g,"it is").replace(/ we're /g,"we are")
+    .replace(/ they're /g,"they are").replace(/ don't /g,"do not").replace(/ doesn't /g,"does not")
+    .replace(/[.,!?;:'"“”]/g,"")
+    .replace(/\s+/g," ");
+}
+
+function buildDiffHtml(userStr,correctStr){
+  const uWords=normalize(userStr).split(" ").filter(Boolean);
+  const cWords=correctStr.split(" ");
+  return cWords.map((cw,idx)=>{
+    const cleanC=normalize(cw);
+    const matched=uWords[idx]===cleanC || uWords.includes(cleanC);
+    return `<span class="${matched?'diff-ok':'diff-no'}">${escapeHtml(cw)}</span>`;
+  }).join(" ");
+}
+
+function checkListening(){
+  let user=$("transcript").value;
+  if(!user.trim())return;
+  let ok=normalize(user)===normalize(currentListen);
+  record("Escuta Nativa",currentListen,user,currentListen,ok,ok?10:5);
+  $("listenFeedback").innerHTML=ok
+    ?`<div class="feedback ok"><b>Correto!</b> Áudio compreendido perfeitamente: <i>"${escapeHtml(currentListen)}"</i>.</div>`
+    :`<div class="feedback no"><b>Quase lá!</b> Compare palavra por palavra:<br>Frase correta: ${buildDiffHtml(user,currentListen)}<br><span class="small">Verde: acertos · Vermelho: diferenças.</span></div>`;
+  save();
+}
+
+function nextListening(){
+  if(!round.length)return;
+  if(roundPos<9){roundPos++;showListen();}
+  else{
+    $("listenArea").classList.add("hidden");
+    $("listenEmpty").classList.remove("hidden");
+    $("listenEmpty").textContent="Rodada concluída! Clique em 'Nova Rodada Nativa' para continuar.";
+  }
+}
+
+function renderWords(){
+  let q=normalize($("wordSearch").value||"");
+  let f=$("wordFilter").value;
+  let cat=$("vocabCategoryFilter").value;
+  let words=seed.filter(x=>{
+    let matchesQ=normalize(x.en+" "+x.pt+" "+x.phonetic).includes(q);
+    let matchesCat=(cat==="all"||x.cat===cat);
+    let matchesF=(f==="all"||(f==="new"&&!state.studied.includes(x.en))||(f==="studied"&&state.studied.includes(x.en)));
+    return matchesQ && matchesCat && matchesF;
+  });
+  $("wordList").innerHTML=words.map(x=>`
+    <div class="vocab-item" style="text-align:left;position:relative">
+      <div style="font-size:32px;text-align:center;margin-bottom:4px">${x.emoji||'📖'}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <b>${escapeHtml(x.en)}</b>
+        <button onclick="speakText(${JSON.stringify(x.en)})" style="padding:2px 6px;font-size:11px">🔊</button>
+      </div>
+      <div class="small muted">${escapeHtml(x.pt)}</div>
+      <div class="small purple">Pronúncia: ${escapeHtml(x.phonetic)}</div>
+      <div style="margin-top:6px;text-align:center">
+        <button class="${state.studied.includes(x.en)?'':'primary'}" onclick="markStudied(${JSON.stringify(x.en)})" style="width:100%;font-size:11px;padding:4px">${state.studied.includes(x.en)?"Memorizada ✓":"Memorizar"}</button>
+      </div>
+    </div>
+  `).join("")||"<p class='muted'>Nenhum vocabulário encontrado.</p>";
+}
+
+function markStudied(w){
+  if(!state.studied.includes(w)){state.studied.push(w);}
+  else{state.studied=state.studied.filter(x=>x!==w);}
+  save();
+  renderWords();
+}
+
+function importWords(ev){
+  let file=ev.target.files[0];
+  if(!file)return;
+  let r=new FileReader();
+  r.onload=()=>{
+    try{
+      let arr=JSON.parse(r.result);
+      if(!Array.isArray(arr))throw 0;
+      let added=0;
+      arr.forEach(x=>{
+        if(x.en && x.pt){
+          const item={en:String(x.en).trim(),pt:String(x.pt).trim(),phonetic:x.phonetic||x.en,emoji:x.emoji||'📚',cat:x.cat||'Daily'};
+          if(!seed.some(y=>normalize(y.en)===normalize(item.en))){
+            seed.push(item);
+            state.customWords.push(item);
+            added++;
+          }
+        }
+      });
+      save();
+      alert(`${added} palavras importadas com sucesso!`);
+      renderWords();
+    }catch(e){
+      alert("Arquivo JSON inválido.");
+    }
+  };
+  r.readAsText(file);
+}
+
+let flashIndex=0,flashDeck=[];
+function shuffleFlash(){flashDeck=[...seed].sort(()=>Math.random()-0.5);flashIndex=0;showFlash();}
+function showFlash(){
+  if(!flashDeck.length)flashDeck=[...seed].sort(()=>Math.random()-0.5);
+  let x=flashDeck[flashIndex%flashDeck.length];
+  $("flashProgress").textContent=`Cartão ${(flashIndex%flashDeck.length)+1} de ${flashDeck.length}`;
+  $("flashEmoji").textContent=x.emoji||'📖';
+  $("flashWord").textContent=x.en;
+  $("flashPhonetic").textContent=`Pronúncia: ${x.phonetic}`;
+  $("flashTranslation").textContent=x.pt;
+  $("flashTranslation").classList.add("hidden");
+}
+function revealFlash(){$("flashTranslation").classList.remove("hidden");}
+function flashRate(ok){
+  let x=flashDeck[flashIndex%flashDeck.length];
+  record("Flashcard",x.en,ok?"Eu Sabia":"Revisar",x.pt,ok,ok?10:5);
+  if(ok && !state.studied.includes(x.en))state.studied.push(x.en);
+  flashIndex++;
+  showFlash();
+  save();
+}
+function nextFlash(){flashIndex++;showFlash();}
+
+const duoQuestions=[
+{prompt:"Traduza: 'Eu gostaria de um copo de água, por favor.'",target:"I would like a glass of water please",opts:["I would like","a glass of water","please","coffee","bread","want"]},
+{prompt:"Monte a frase: 'Ela estuda inglês todas as manhãs.'",target:"she studies english every morning",opts:["she","studies","english","every","morning","work","water"]},
+{prompt:"Traduza: 'Onde fica a casa?'",target:"where is the house",opts:["where","is","the","house","water","table","coffee"]}
+];
+let duoIdx=0;
+function initDuoQuiz(){loadDuoQuestion();}
+function loadDuoQuestion(){
+  if(duoIdx>=duoQuestions.length)duoIdx=0;
+  const q=duoQuestions[duoIdx];
+  $("duoStep").textContent=`Exercício ${duoIdx+1} de ${duoQuestions.length}`;
+  $("duoPrompt").textContent=q.prompt;
+  $("duoInput").value="";
+  $("duoFeedback").innerHTML="";
+  $("duoOptions").innerHTML=q.opts.map(o=>`<button class="tab" onclick="addDuoWord('${o}')" style="margin:2px">${o}</button>`).join("");
+}
+function addDuoWord(w){
+  const inp=$("duoInput");
+  inp.value=(inp.value+" "+w).trim();
+}
+function checkDuoAnswer(){
+  const q=duoQuestions[duoIdx];
+  const user=normalize($("duoInput").value);
+  const target=normalize(q.target);
+  const ok=user===target;
+  $("duoFeedback").innerHTML=ok
+    ?`<div class="feedback ok"><b>Correto!</b> Excelente construção de frase.</div>`
+    :`<div class="feedback no"><b>Incorreto.</b> Resposta esperada: <i>${q.target}</i></div>`;
+  record("Duolingo Quiz",q.prompt,$("duoInput").value,q.target,ok,10);
+  if(ok){duoIdx++;setTimeout(loadDuoQuestion,1500);}
+}
+
+function initReadings(){
+  $("readingSelect").innerHTML=readings.map((r,i)=>`<option value="${i}">${r.title}</option>`).join("");
+  loadReading();
+}
+function loadReading(){
+  const r=readings[parseInt($("readingSelect").value)||0];
+  $("readingTitle").textContent=r.title;
+  $("readingText").textContent=r.text;
+  $("readingHint").textContent=r.hint;
+  $("readingQuestionLabel").innerHTML=`<b>Pergunta:</b> ${r.question}`;
+  $("readingAnswer").value="";
+  $("readingFeedback").innerHTML="";
+}
+function checkReading(){
+  const r=readings[parseInt($("readingSelect").value)||0];
+  const raw=$("readingAnswer").value;
+  if(!raw.trim())return;
+  const a=normalize(raw);
+  const ok=r.accepted.some(acc=>a.includes(normalize(acc))||normalize(acc)===a);
+  $("readingFeedback").innerHTML=ok
+    ?`<div class="feedback ok"><b>Excelente!</b> Resposta correta.<br>Modelo: <i>${r.sample}</i></div>`
+    :`<div class="feedback no"><b>Revise o texto:</b> Resposta esperada: <i>${r.sample}</i></div>`;
+  record("Leitura",r.title,raw,r.sample,ok,10);
+}
+
+const dialogues=[
+  {en:"I'd like a table for two, please.",phon:"áid láik ê téibou fór tú, plíz"},
+  {en:"Where is the nearest coffee shop?",phon:"uér ís thê níarest cófi shóp?"},
+  {en:"What are you gonna do tonight?",phon:"uót ár iu góna dú tunáit?"},
+  {en:"Could you speak more slowly, please?",phon:"cúd iu spík mór slóuli, plíz?"}
+];
+let dIdx=0;
+function nextDialogue(){
+  dIdx=(dIdx+1)%dialogues.length;
+  $("dialogueLine").textContent=dialogues[dIdx].en;
+  $("dialoguePhonetic").textContent=`Pronúncia figurada: ${dialogues[dIdx].phon}`;
+}
+function recognizeSpeech(){
+  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){
+    $("speechResult").textContent="Reconhecimento de fala não disponível neste navegador.";
+    return;
+  }
+  let rec=new SR();
+  rec.lang="en-US";
+  rec.interimResults=false;
+  $("speechResult").textContent="🎙️ Ouvindo... Fale a frase em inglês agora.";
+  rec.onresult=e=>{
+    const spoken=e.results[0][0].transcript;
+    const target=dialogues[dIdx].en;
+    const ok=normalize(spoken)===normalize(target);
+    $("speechResult").innerHTML=ok
+      ?`<span class="good"><b>Excelente pronúncia!</b> Você disse: "${escapeHtml(spoken)}"</span>`
+      :`Você disse: <b>"${escapeHtml(spoken)}"</b><br>Comparação: ${buildDiffHtml(spoken,target)}`;
+  };
+  rec.onerror=()=>$("speechResult").textContent="Não foi possível reconhecer. Verifique o microfone.";
+  rec.start();
+}
+
+function renderHistory(){
+  let c=state.history.filter(x=>x.ok).length,w=state.history.length-c;
+  $("historyTotal").textContent=state.history.length;
+  $("historyCorrect").textContent=`${c} acertos`;
+  $("historyWrong").textContent=`${w} erros`;
+  $("historyRows").innerHTML=state.history.map(x=>`
+    <tr>
+      <td>${escapeHtml(x.time)}</td>
+      <td>${escapeHtml(x.type)}</td>
+      <td>${escapeHtml(x.item)}</td>
+      <td>${escapeHtml(x.user)}</td>
+      <td>${escapeHtml(x.correct)}</td>
+      <td class="${x.ok?"good":"bad"}">${x.ok?"Acerto":"Erro"}</td>
+    </tr>
+  `).join("");
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+
+function clearHistory(){
+  if(confirm("Apagar todo o histórico?")){
+    state.history=[];
+    state.due=[];
+    save();
+    renderHistory();
+  }
+}
+
+function resetProgress(){
+  if(confirm("Deseja reiniciar todo o progresso do curso?")){
+    localStorage.removeItem("englishPath12Weeks");
+    location.reload();
+  }
+}
+
+function exportData(){
+  let blob=new Blob([JSON.stringify({state,seed},null,2)],{type:"application/json"});
+  let a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="english-path-12semanas-backup.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function importBackup(ev){
+  let file=ev.target.files[0];
+  if(!file)return;
+  let r=new FileReader();
+  r.onload=()=>{
+    try{
+      let parsed=JSON.parse(r.result);
+      if(!parsed.state)throw 0;
+      state=Object.assign({done:[],history:[],studied:[],ratings:{},due:[],writing:[],customWords:[],level:"intermediate",sessionTime:30,speakerVoice:"adult_female"},parsed.state);
+      if(Array.isArray(parsed.seed)){
+        parsed.seed.forEach(w=>{if(!seed.some(x=>normalize(x.en)===normalize(w.en)))seed.push(w);});
+      }
+      save();
+      renderLessons();
+      renderWords();
+      alert("Backup restaurado com sucesso!");
+    }catch(e){
+      alert("Arquivo de backup inválido.");
+    }
+  };
+  r.readAsText(file);
+}
+
+updateDashboard();
+renderLessons();
+renderWords();
+showFlash();
+initReadings();
+initDuoQuiz();
+updateTimerDisplay();
+</script>
+</body>
+</html>
